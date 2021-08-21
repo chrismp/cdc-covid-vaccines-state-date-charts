@@ -3,6 +3,7 @@
 library(dplyr)
 
 func.SubtractFromPrev <- function(x){return(x - lag(x))}
+func.mvavg <- function(x,n){stats::filter(x,rep(1/n,n), sides=1)}
 
 resourceID <- 'unsk-b7fc'
 source('download-cdc-api-data/download.r')
@@ -18,15 +19,10 @@ fl <- fl[order(date_formatted),]
 fl$administered <- as.numeric(fl$administered)
 fl$new_vaccines_administered <- func.SubtractFromPrev(fl$administered)
 
-# fl$new_case_7day_avg <- mvavg(
-#   x = fl$new_case,
-#   n = 7
-# )
-# 
-# fl$new_deaths_7day_avg <- mvavg(
-#   x = fl$new_death,
-#   n = 7
-# )
+fl$new_vaccines_administered_7day_avg <- func.mvavg(
+  x = fl$new_vaccines_administered,
+  n = 7
+)
 
 flslim <- fl[,c(
   'date',
@@ -48,7 +44,8 @@ flslim <- fl[,c(
   'series_complete_18pluspop',
   'series_complete_65plus',
   'series_complete_65pluspop',
-  'new_vaccines_administered'
+  'new_vaccines_administered',
+  'new_vaccines_administered_7day_avg'
 )]
 
 
