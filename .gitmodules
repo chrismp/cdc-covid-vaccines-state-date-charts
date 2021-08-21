@@ -1,0 +1,3 @@
+[submodule "download-cdc-api-data"]
+	path = download-cdc-api-data
+	url = https://github.com/chrismp/download-cdc-api-data.git
