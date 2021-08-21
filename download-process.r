@@ -10,6 +10,8 @@ source('download-cdc-api-data/download.r')
 
 rb$date_formatted <- as.Date(rb$date)
 
+rb[rb == 0] <- NA
+
 fl <- filter(
   .data = rb,
   location == 'FL'
