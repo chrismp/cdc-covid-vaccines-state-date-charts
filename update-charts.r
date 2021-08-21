@@ -5,16 +5,11 @@ library(DatawRappr)
 
 print("Starting chart updater")
 
-latestdate <- as.POSIXct(
-  x = max(flslim$date_formatted),
-  format = "%Y-%m-%d"
-)
-
 updateDateFormat <- gsub(
   pattern = " 0",
   replacement = ' ',
   x = format(
-    x = latestdate,
+    x = max(flslim$date_formatted),
     format = "%B %d, %Y"
   )
 )
@@ -41,6 +36,3 @@ for (id in chartIDs) {
     return_urls = TRUE
   )  
 }
-
-
-
