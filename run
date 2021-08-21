@@ -1,2 +1,3 @@
 #!/bin/bash
-Rscript download-process.r
+Rscript update-charts.r
+
