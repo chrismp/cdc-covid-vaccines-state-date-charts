@@ -68,6 +68,7 @@ flslim <- flslim[,c(
   'new_administered_dose1_recip',
   'new_administered_dose1_recip_7day_avg',
   'additional_doses',
+  'additional_doses_vax_pct',
   'new_additional_doses',
   'new_additional_doses_7day_avg'
 )]
