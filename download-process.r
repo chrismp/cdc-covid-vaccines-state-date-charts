@@ -19,7 +19,7 @@ fl <- filter(
 
 fl <- fl[order(date_formatted),]
 
-flslim <- fl %>% filter(date_formatted >= '2021-02-13')
+flslim <- fl #%>% filter(date_formatted >= '2021-02-13')
 
 flslim$administered <- as.numeric(flslim$administered)
 flslim$new_vaccines_administered <- func.SubtractFromPrev(flslim$administered)
@@ -32,8 +32,15 @@ flslim$administered_dose1_recip <- as.numeric(flslim$administered_dose1_recip)
 flslim$new_administered_dose1_recip <- func.SubtractFromPrev(flslim$administered_dose1_recip)
 flslim$new_administered_dose1_recip_7day_avg <- func.mvavg(
   x = flslim$new_administered_dose1_recip,
-  7
+  n = 7
 )
+
+flslim$additional_doses <- as.numeric(flslim$additional_doses)
+flslim$additional_doses_7day_avg <- func.mvavg(
+  x = flslim$additional_doses,
+  n = 7
+)
+
 
 flslim <- flslim[,c(
   'date',
@@ -58,7 +65,9 @@ flslim <- flslim[,c(
   'new_vaccines_administered',
   'new_vaccines_administered_7day_avg',
   'new_administered_dose1_recip',
-  'new_administered_dose1_recip_7day_avg'
+  'new_administered_dose1_recip_7day_avg',
+  'additional_doses',
+  'additional_doses_7day_avg'
 )]
 
 o <- 'output'
