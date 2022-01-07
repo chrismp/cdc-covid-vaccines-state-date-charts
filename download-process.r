@@ -36,8 +36,9 @@ flslim$new_administered_dose1_recip_7day_avg <- func.mvavg(
 )
 
 flslim$additional_doses <- as.numeric(flslim$additional_doses)
-flslim$additional_doses_7day_avg <- func.mvavg(
-  x = flslim$additional_doses,
+flslim$new_additional_doses <- func.SubtractFromPrev(flslim$additional_doses)
+flslim$new_additional_doses_7day_avg <- func.mvavg(
+  x = flslim$new_additional_doses,
   n = 7
 )
 
@@ -67,7 +68,8 @@ flslim <- flslim[,c(
   'new_administered_dose1_recip',
   'new_administered_dose1_recip_7day_avg',
   'additional_doses',
-  'additional_doses_7day_avg'
+  'new_additional_doses',
+  'new_additional_doses_7day_avg'
 )]
 
 o <- 'output'
@@ -93,4 +95,3 @@ write.csv(
   na = '',
   row.names = F
 )
-
