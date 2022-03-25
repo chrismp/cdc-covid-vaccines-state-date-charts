@@ -15,9 +15,10 @@ updateDateFormat <- gsub(
 )
 
 chartIDs <- c(
-  'cN1Zb', # percent fl pop vaccinated
-  'Iu363', # total vaccinations fl
-  'i2DLc' # newly reported vaccinations fl
+  'IqRIM', # percent fl pop vaccinated
+  '4dy79' # newly reported vaccines - first doses, series complete, boosters
+  # 'Iu363', # total vaccinations fl
+  # 'i2DLc' # newly reported vaccinations fl
 )
 
 apikey <- Sys.getenv("DATAWRAPPER_API")
@@ -27,7 +28,7 @@ for (id in chartIDs) {
   dw_edit_chart(
     chart_id = id,
     api_key = apikey,
-    annotate = paste0("Updated ",updateDateFormat,'.')
+    annotate = paste0("Updated ",updateDateFormat,'. Vaccinations may cover some residents not covered by Florida Health Department reports, such as federal and military personnel residing or stateioned in the state.')
   )
   print("Publishing chart")  
   dw_publish_chart(
