@@ -38,7 +38,7 @@ flslim$new_administered_dose1_recip_7day_avg <- func.mvavg(
 flslim$series_complete_yes <- as.numeric(flslim$series_complete_yes)
 flslim$new_series_complete <- func.SubtractFromPrev(flslim$series_complete_yes)
 flslim$new_series_complete_7day_avg <- func.mvavg(
-  x = flslim$series_complete_yes,
+  x = flslim$new_series_complete,
   n = 7
 )
 
