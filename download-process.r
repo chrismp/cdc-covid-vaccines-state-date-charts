@@ -49,13 +49,14 @@ flslim$new_additional_doses_7day_avg <- func.mvavg(
   n = 7
 )
 
+flpop <- 21781128 # https://www.census.gov/quickfacts/FL
 
 flslim <- flslim[,c(
   'date',
   'date_formatted',
   'administered',
   'administered_dose1_recip',
-  'administered_dose1_pop_pct',
+  # 'administered_dose1_pop_pct',
   'administered_dose1_recip_1',
   'administered_dose1_recip_2',
   'administered_dose1_recip_3',
@@ -63,13 +64,13 @@ flslim <- flslim[,c(
   'administered_dose1_recip_5',
   'administered_dose1_recip_6',
   'series_complete_yes',
-  'series_complete_pop_pct',
-  'series_complete_12plus',
-  'series_complete_12pluspop',
-  'series_complete_18plus',
-  'series_complete_18pluspop',
-  'series_complete_65plus',
-  'series_complete_65pluspop',
+  # 'series_complete_pop_pct',
+  # 'series_complete_12plus',
+  # 'series_complete_12pluspop',
+  # 'series_complete_18plus',
+  # 'series_complete_18pluspop',
+  # 'series_complete_65plus',
+  # 'series_complete_65pluspop',
   'new_vaccines_administered',
   'new_vaccines_administered_7day_avg',
   'new_administered_dose1_recip',
@@ -77,10 +78,15 @@ flslim <- flslim[,c(
   'new_series_complete',
   'new_series_complete_7day_avg',
   'additional_doses',
-  'additional_doses_vax_pct',
+  # 'additional_doses_vax_pct',
   'new_additional_doses',
   'new_additional_doses_7day_avg'
 )]
+
+flslim$flpop <- flpop
+flslim$pct_pop_dose1 <- flslim$administered_dose1_recip / flslim$flpop * 100
+flslim$pct_series_complete <- flslim$series_complete_yes / flslim$flpop * 100
+flslim$pct_additional_doses <- flslim$additional_doses / flslim$flpop * 100
 
 o <- 'output'
 dir.create(o)
