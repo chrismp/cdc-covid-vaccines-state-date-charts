@@ -90,7 +90,7 @@ fl$flpop <- flpop
 # flslim$pct_series_complete <- flslim$series_complete_yes / flslim$flpop * 100
 # flslim$pct_additional_doses <- flslim$additional_doses / flslim$flpop * 100
 
-fl$booster_cumulative <- as.numeric(fl$booster_cumulative) / fl$flpop * 100
+fl$booster_pct <- as.numeric(fl$booster_cumulative) / fl$flpop * 100
 
 o <- 'output'
 dir.create(o)
