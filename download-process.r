@@ -12,6 +12,7 @@ source('download-cdc-api-data/download.r')
 rb$date_formatted <- as.Date(rb$date)
 
 rb[rb == 0] <- NA
+rb[rb == ''] <- NA
 
 fl <- filter(
   .data = rb,
@@ -88,6 +89,8 @@ fl$flpop <- flpop
 # flslim$pct_pop_dose1 <- flslim$administered_dose1_recip / flslim$flpop * 100
 # flslim$pct_series_complete <- flslim$series_complete_yes / flslim$flpop * 100
 # flslim$pct_additional_doses <- flslim$additional_doses / flslim$flpop * 100
+
+fl$booster_cumulative <- as.numeric(fl$booster_cumulative) / fl$flpop * 100
 
 o <- 'output'
 dir.create(o)
