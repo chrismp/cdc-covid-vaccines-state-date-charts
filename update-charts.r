@@ -9,7 +9,7 @@ updateDateFormat <- gsub(
   pattern = " 0",
   replacement = ' ',
   x = format(
-    x = max(flslim$date_formatted),
+    x = max(fl$date_formatted),
     format = "%B %d, %Y"
   )
 )
