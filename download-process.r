@@ -109,9 +109,19 @@ write.csv(
   row.names = F
 )
 
-# write.csv(
-#   x = flslim,
-#   file = paste0(o,'/fl-slim-vaccines-by-date.csv'),
-#   na = '',
-#   row.names = F
-# )
+flslim <- group_by(
+  .data = fl,
+  date_formatted
+) %>%
+  mutate(
+    administered_dose1_pop_pct_max = max(administered_dose1_pop_pct)
+  ) %>%
+  ungroup() %>%
+  filter(administered_dose1_pop_pct == administered_dose1_pop_pct_max)
+
+write.csv(
+  x = flslim,
+  file = paste0(o,'/fl-slim-vaccines-by-date.csv'),
+  na = '',
+  row.names = F
+)
