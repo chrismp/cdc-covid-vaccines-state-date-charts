@@ -28,7 +28,7 @@ for (id in chartIDs) {
   dw_edit_chart(
     chart_id = id,
     api_key = apikey,
-    annotate = paste0("Updated ",updateDateFormat,'. Vaccinations may cover some residents not covered by Florida Health Department reports, such as federal and military personnel residing or stateioned in the state.')
+    annotate = paste0("Updated ",updateDateFormat,'. Federal vaccination data may include residents not covered by Florida Health Department reports, such as federal and military personnel residing or stationed in the state.')
   )
   print("Publishing chart")  
   dw_publish_chart(
